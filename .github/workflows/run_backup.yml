@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "*/10 * * * *" #doesn't actually consistently run every 10 min =\
+    - cron: "0 */8 * * *"
 
 jobs:
   backup:
@@ -31,7 +31,7 @@ jobs:
           pip install git+https://github.com/MatthieuBizien/roam-to-git.git
       - name: Run backup
         run: |
-          roam-to-git . --formats json edn markdown
+          roam-to-git . --formats edn markdown formatted
         env:
           ROAMRESEARCH_USER: ${{ secrets.roamEmail }}
           ROAMRESEARCH_PASSWORD: ${{ secrets.roamPassword }}
